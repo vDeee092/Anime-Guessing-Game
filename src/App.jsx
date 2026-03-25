@@ -1,4 +1,5 @@
-import { Button, Stack, Divider, TextField} from '@mui/material';
+import RatingTextField from './components/RatingTextField';
+import { Button, Stack, Divider} from '@mui/material';
 
 function App() {
   return (
@@ -20,7 +21,7 @@ function App() {
         <Stack sx={{flex: 8, alignItems: 'center', justifyContent: 'center'}}>
           <img src="https://myanimelist.net/images/anime/1079/138100.jpg" />
         <div flex-direction="row">
-			    <TextField type="text" placeholder="Guess rating score"/>
+          <RatingTextField />
           <Button>Enter</Button>
         </div>
         </Stack>
@@ -31,6 +32,5 @@ function App() {
     </Stack>
   )
 }
-
 
 export default App
