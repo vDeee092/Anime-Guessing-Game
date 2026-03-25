@@ -1,7 +1,6 @@
 import {TextField} from '@mui/material';
 
 const RatingTextField = ({value, onChange}) => {
-	// fix: shouldnt initialize to null
 	const handleChange = (event) => {
 		const raw = event.target.value.replace(/[^0-9.]/g, "");
 		let input = event.target.value.replace(/[^0-9]/g, "");

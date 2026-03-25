@@ -1,5 +1,5 @@
 import { Button, Stack, Divider} from '@mui/material';
-import RatingInput from './components/RatingInput';
+import Game from './components/Game';
 
 function App() {
   return (
@@ -18,10 +18,7 @@ function App() {
           <Button variant="text">Leaderboard</Button>
         </Stack>
         {/* game */}
-        <Stack sx={{flex: 8, alignItems: 'center', justifyContent: 'center'}}>
-          <img src="https://myanimelist.net/images/anime/1079/138100.jpg" />
-          <RatingInput />
-        </Stack>
+        <Game />
 		
 		    <Stack sx={{flex: 1}}/>
 
