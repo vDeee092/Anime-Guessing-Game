@@ -1,5 +1,5 @@
-import RatingTextField from './components/RatingTextField';
 import { Button, Stack, Divider} from '@mui/material';
+import RatingInput from './components/RatingInput';
 
 function App() {
   return (
@@ -20,10 +20,7 @@ function App() {
         {/* game */}
         <Stack sx={{flex: 8, alignItems: 'center', justifyContent: 'center'}}>
           <img src="https://myanimelist.net/images/anime/1079/138100.jpg" />
-        <div flex-direction="row">
-          <RatingTextField />
-          <Button>Enter</Button>
-        </div>
+          <RatingInput />
         </Stack>
 		
 		    <Stack sx={{flex: 1}}/>

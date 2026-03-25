@@ -1,10 +1,7 @@
-import { useState } from 'react';
 import {TextField} from '@mui/material';
 
-const RatingTextField = () => {
+const RatingTextField = ({value, onChange}) => {
 	// fix: shouldnt initialize to null
-	const [displayValue, setDisplayValue] = useState(null);
-
 	const handleChange = (event) => {
 		const raw = event.target.value.replace(/[^0-9.]/g, "");
 		let input = event.target.value.replace(/[^0-9]/g, "");
@@ -21,13 +18,13 @@ const RatingTextField = () => {
 		if (isNaN(newValue)) newValue = "";
 		if (input.at(0) === '0' && (input.length === 2)) newValue = "0." + newValue;
 		if (newValue == "10") newValue = "1.0";
-		setDisplayValue(newValue);
+		onChange(newValue);
 	};
 
 	return (
 	<TextField
 		placeholder="Guess rating score"
-      	value={displayValue}
+      	value={value}
       	onChange={handleChange}
         helperText="Enter value from 0.0 to 10.0"
     />
