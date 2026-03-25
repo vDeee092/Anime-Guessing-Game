@@ -6,11 +6,12 @@ const RatingInput = () => {
     const [rating, setRating] = useState("");
 
     const handleClick = () => {
-        console.log(rating);
+        if (rating == "") console.log("Enter a value");
+        else console.log(rating);
     }
 
     return (
-        <Stack flex-direction="row">
+        <Stack direction="row" alignItems="flex-start">
           <RatingTextField value={rating} onChange={setRating}/>
           <Button onClick={handleClick}>Enter</Button>
         </Stack>
