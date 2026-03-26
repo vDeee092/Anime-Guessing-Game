@@ -5,6 +5,8 @@ import { useState } from 'react';
 const Game = () => {
     const [isCorrect, setIsCorrect] = useState(false);
     const [randIndex, setRandIndex] = useState(Math.floor(Math.random() * data.length));
+    const [feedback, setFeedback] = useState("");
+    const [guessCounter, setGuessCounter] = useState(0);
     //const [animeToGuess, setAnimeToGuess] = useState(data[randIndex]);
     //const randIndex = Math.floor(Math.random() * data.length);
     const animeToGuess = data[randIndex];
@@ -12,13 +14,15 @@ const Game = () => {
     const playAgain = () => {
         setIsCorrect(false);
         setRandIndex(Math.floor(Math.random() * data.length));
+        setGuessCounter(0);
         return;
     }
     return (
         <Stack sx={{flex: 8, alignItems: 'center', justifyContent: 'center'}}>
             <img src={animeToGuess.image} />
             {animeToGuess.name}
-            <RatingInput ratingToGuess={ratingToGuess} onGuess={setIsCorrect}/>
+            <RatingInput ratingToGuess={ratingToGuess} onGuess={setIsCorrect} sendFeedback={setFeedback} guessCounter={guessCounter} setGuessCounter={setGuessCounter}/>
+            {feedback}
             <Modal
             open={isCorrect}>
                 <Stack>
@@ -26,7 +30,7 @@ const Game = () => {
                         Congratulations
                     </Typography>
                     <Typography>
-                        You guessed the rating in _ tries!
+                        You guessed the rating in {guessCounter} tries!
                     </Typography>
                     <Button onClick={playAgain}>
                         Play Again

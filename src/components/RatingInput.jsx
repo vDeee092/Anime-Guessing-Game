@@ -1,28 +1,46 @@
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import RatingTextField from './RatingTextField';
 import {Button, Stack} from '@mui/material';
 
-const RatingInput = ({ratingToGuess, onGuess}) => {
+function usePrev(rating) {
+    const ref = useRef();
+    useEffect(() => {
+        ref.current = rating;
+    }, [rating])
+    return ref.current;
+}
+
+const RatingInput = ({ratingToGuess, onGuess, sendFeedback, guessCounter, setGuessCounter}) => {
     const [rating, setRating] = useState("");
+    const prevRating = usePrev(rating);
 
     const handleClick = () => {
         let correctAnswer = false;
         if (rating == "") {
-            console.log("Enter a value");
+            feedback = "Enter a value";
+            sendFeedback(feedback);
             return;
         } 
         
         console.log("rating " + rating + ", ratingToGuess " + ratingToGuess);
-
+        let feedback = "";
         if (rating > ratingToGuess)
-            console.log("Lower");
+            feedback = "Lower";
         else if (rating < ratingToGuess)
-            console.log("Higher");
+            feedback = "Higher";
         else {
-            console.log("Correct!");
+            feedback = "";
             correctAnswer = true;
         }
+        if (rating == prevRating) {
+            feedback = feedback + " - Enter a different value";
+            sendFeedback(feedback);
+            return;
+        }
+
         onGuess(correctAnswer);
+        sendFeedback(feedback);
+        setGuessCounter(guessCounter + 1);
     }
 
     return (
