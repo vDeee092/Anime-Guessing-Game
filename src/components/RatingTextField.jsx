@@ -3,8 +3,14 @@ import {TextField} from '@mui/material';
 const RatingTextField = ({value, onChange}) => {
 	const handleChange = (event) => {
 		let raw = event.target.value.replace(/[^0-9.]/g, "");
-		if (raw.at(1) == '.' && raw.length >= 5) {
-			raw = raw.substring(0, 4);
+		if (raw == "1.00" || /^(10)[0-9]/.test(raw)) {
+			onChange("10");
+			return;
+		}
+		if (raw.at(1) == '.' && raw.length >= 4) {
+			raw = raw.substring(0, 3);
+			onChange(raw);
+			return;
 		}
 		let digits = raw.replace(/\./g, "");
 		let value = (/\./.test(raw)) ? parseFloat(raw, 10) : parseInt(digits, 10);
@@ -16,13 +22,7 @@ const RatingTextField = ({value, onChange}) => {
 			onChange("0.0");
 			return;
 		}
-		if (raw == "1.00" || raw == "100") {
-			onChange("10");
-			return;
-		}
-		if (value >= 10) {
-			value = (value * 0.1).toFixed(1);
-		}
+		if (value >= 10) value = (value * 0.1).toFixed(1);
 		if (digits.at(0) === '0' && (digits.length === 2) && value % 1 == 0) value = "0." + value;
 		onChange(value);
 	};

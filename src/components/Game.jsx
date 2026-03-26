@@ -7,12 +7,12 @@ const Game = () => {
     const [isCorrect, setIsCorrect] = useState(false);
     const randIndex = Math.floor(Math.random() * data.length);
     const animeToGuess = data[randIndex];
-
+    const ratingToGuess = parseFloat(animeToGuess.score).toFixed(1);
     return (
         <Stack sx={{flex: 8, alignItems: 'center', justifyContent: 'center'}}>
             <img src={animeToGuess.image} />
             {animeToGuess.name}
-            <RatingInput ratingToGuess={animeToGuess.score} onGuess={setIsCorrect}/>
+            <RatingInput ratingToGuess={ratingToGuess} onGuess={setIsCorrect}/>
         </Stack>
     );
 }
