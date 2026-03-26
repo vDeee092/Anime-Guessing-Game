@@ -1,18 +1,38 @@
-import {Stack} from '@mui/material';
+import {Stack, Modal, Typography, Button} from '@mui/material';
 import RatingInput from './RatingInput';
 import data from '../data.json';
 import { useState } from 'react';
-
 const Game = () => {
     const [isCorrect, setIsCorrect] = useState(false);
-    const randIndex = Math.floor(Math.random() * data.length);
+    const [randIndex, setRandIndex] = useState(Math.floor(Math.random() * data.length));
+    //const [animeToGuess, setAnimeToGuess] = useState(data[randIndex]);
+    //const randIndex = Math.floor(Math.random() * data.length);
     const animeToGuess = data[randIndex];
     const ratingToGuess = parseFloat(animeToGuess.score).toFixed(1);
+    const playAgain = () => {
+        setIsCorrect(false);
+        setRandIndex(Math.floor(Math.random() * data.length));
+        return;
+    }
     return (
         <Stack sx={{flex: 8, alignItems: 'center', justifyContent: 'center'}}>
             <img src={animeToGuess.image} />
             {animeToGuess.name}
             <RatingInput ratingToGuess={ratingToGuess} onGuess={setIsCorrect}/>
+            <Modal
+            open={isCorrect}>
+                <Stack>
+                    <Typography>
+                        Congratulations
+                    </Typography>
+                    <Typography>
+                        You guessed the rating in _ tries!
+                    </Typography>
+                    <Button onClick={playAgain}>
+                        Play Again
+                    </Button>
+                </Stack>
+            </Modal>
         </Stack>
     );
 }
