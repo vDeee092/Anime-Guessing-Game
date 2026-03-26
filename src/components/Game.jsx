@@ -21,7 +21,7 @@ const Game = () => {
         <Stack sx={{flex: 8, alignItems: 'center', justifyContent: 'center'}}>
             <img src={animeToGuess.image} />
             {animeToGuess.name}
-            <RatingInput ratingToGuess={ratingToGuess} onGuess={setIsCorrect} sendFeedback={setFeedback} guessCounter={guessCounter} setGuessCounter={setGuessCounter}/>
+            <RatingInput key={randIndex} ratingToGuess={ratingToGuess} onGuess={setIsCorrect} sendFeedback={setFeedback} guessCounter={guessCounter} setGuessCounter={setGuessCounter}/>
             {feedback}
             <Modal
             open={isCorrect}>
