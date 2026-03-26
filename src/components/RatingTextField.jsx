@@ -2,22 +2,29 @@ import {TextField} from '@mui/material';
 
 const RatingTextField = ({value, onChange}) => {
 	const handleChange = (event) => {
-		const raw = event.target.value.replace(/[^0-9.]/g, "");
-		let input = event.target.value.replace(/[^0-9]/g, "");
-		if (raw.at(0) == '0' && raw.length === 4) input = input.substring(0,2);
-		let newValue = parseInt(input, 10);
-
-		if (newValue > 100) {
-			newValue = newValue = (newValue * 0.1).toFixed(1);
+		let raw = event.target.value.replace(/[^0-9.]/g, "");
+		if (raw.at(1) == '.' && raw.length >= 5) {
+			raw = raw.substring(0, 4);
 		}
-		if (input > 10) {
-			newValue = Math.trunc(newValue);
-			newValue = (newValue * 0.1).toFixed(1);
+		let digits = raw.replace(/\./g, "");
+		let value = (/\./.test(raw)) ? parseFloat(raw, 10) : parseInt(digits, 10);
+		if (digits == "") {
+			onChange("");
+			return;
 		}
-		if (isNaN(newValue)) newValue = "";
-		if (input.at(0) === '0' && (input.length === 2)) newValue = "0." + newValue;
-		if (newValue == "10") newValue = "1.0";
-		onChange(newValue);
+		if (raw == "0.00") {
+			onChange("0.0");
+			return;
+		}
+		if (raw == "1.00" || raw == "100") {
+			onChange("10");
+			return;
+		}
+		if (value >= 10) {
+			value = (value * 0.1).toFixed(1);
+		}
+		if (digits.at(0) === '0' && (digits.length === 2) && value % 1 == 0) value = "0." + value;
+		onChange(value);
 	};
 
 	return (
