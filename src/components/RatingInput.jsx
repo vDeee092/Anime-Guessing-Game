@@ -2,12 +2,27 @@ import { useState } from 'react';
 import RatingTextField from './RatingTextField';
 import {Button, Stack} from '@mui/material';
 
-const RatingInput = () => {
+const RatingInput = ({ratingToGuess, onGuess}) => {
     const [rating, setRating] = useState("");
 
     const handleClick = () => {
-        if (rating == "") console.log("Enter a value");
-        else console.log(rating);
+        let correctAnswer = false;
+        if (rating == "") {
+            console.log("Enter a value");
+            return;
+        } 
+        
+        console.log("rating " + rating + ", ratingToGuess " + ratingToGuess);
+
+        if (rating > ratingToGuess)
+            console.log("Lower");
+        else if (rating < ratingToGuess)
+            console.log("Higher");
+        else {
+            console.log("Correct!");
+            correctAnswer = true;
+        }
+        onGuess(correctAnswer);
     }
 
     return (
