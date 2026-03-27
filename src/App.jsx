@@ -1,6 +1,7 @@
-import { Stack, createTheme, ThemeProvider, CssBaseline, Typography} from '@mui/material';
+import { Stack, createTheme, ThemeProvider, CssBaseline, Typography, Button} from '@mui/material';
 import Game from './components/Game';
 import Navbar from './components/Navbar';
+import { useState } from 'react';
 
 const theme = createTheme({
   palette: {
@@ -29,6 +30,7 @@ const theme = createTheme({
 
 
 function App() {
+  const [selectedGame, setSelectedGame] = useState([true, false]);
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
@@ -41,7 +43,8 @@ function App() {
         {/* contents */}
         <Stack sx={{flexDirection:{xs: 'column', sm: 'row'}, flex:1, paddingBottom:1}}>
           {/* nav bar */}
-          <Navbar />
+          <Navbar selectedGame={selectedGame} setSelectedGame={setSelectedGame}/>
+          <Button onClick={() => console.log(selectedGame)}>test</Button>
           {/* game */}
           <Game />
 		      <Stack sx={{flex: 1.5}}/>
