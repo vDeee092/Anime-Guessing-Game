@@ -1,5 +1,6 @@
-import { Button, Stack, Divider, createTheme, ThemeProvider, CssBaseline, Typography} from '@mui/material';
+import { Stack, createTheme, ThemeProvider, CssBaseline, Typography} from '@mui/material';
 import Game from './components/Game';
+import Navbar from './components/Navbar';
 
 const theme = createTheme({
   palette: {
@@ -40,11 +41,7 @@ function App() {
         {/* contents */}
         <Stack sx={{flexDirection:{xs: 'column', sm: 'row'}, flex:1, paddingBottom:1}}>
           {/* nav bar */}
-          <Stack sx={{flex: 1.5, justifyContent:{sm:'center'}}}>
-            <Button variant="text">Change Game</Button>
-            <Divider />
-            <Button variant="text">Leaderboard</Button>
-          </Stack>
+          <Navbar />
           {/* game */}
           <Game />
 		      <Stack sx={{flex: 1.5}}/>
