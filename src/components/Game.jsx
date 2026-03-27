@@ -1,4 +1,4 @@
-import {Stack} from '@mui/material';
+import {Stack, Typography} from '@mui/material';
 import RatingInput from './RatingInput';
 import data from '../data.json';
 import { useState } from 'react';
@@ -18,13 +18,12 @@ const Game = () => {
         return;
     }
     return (
-        <Stack sx={{flex: 8, alignItems: 'center', justifyContent: 'center'}}>
+        <Stack sx={{flex: 7, alignItems: 'center', justifyContent: 'center', '& > *': {margin:1}}}>
             <img src={animeToGuess.image} />
-            {animeToGuess.name}
+            <Typography>{animeToGuess.name}</Typography>
             <RatingInput key={randIndex} ratingToGuess={ratingToGuess} onGuess={setIsCorrect} sendFeedback={setFeedback} guessCounter={guessCounter} setGuessCounter={setGuessCounter}/>
-            {feedback}
+            <Typography>{feedback}</Typography>
             <PlayAgainModal playAgain={playAgain} isCorrect={isCorrect} guessCounter={guessCounter}/>
-            
         </Stack>
     );
 }

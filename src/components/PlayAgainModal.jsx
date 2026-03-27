@@ -5,13 +5,12 @@ const styles = {
     top: '50%',
     left: '50%',
     transform: 'translate(-50%, -50%)',
-    width: 400,
-    height: 500,
+    width: {xs:'75%', sm:400},
+    height: {xs:'50%', sm:500},
     bgcolor: "background.paper"
 }
 
 const PlayAgainModal = ({playAgain, isCorrect, guessCounter}) => {
-    console.log(isCorrect)
     return (
         <Modal
         open={isCorrect}>
