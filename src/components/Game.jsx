@@ -1,14 +1,32 @@
-import {Stack, Typography, Box} from '@mui/material';
+import {Stack, Typography, Box, Button} from '@mui/material';
 import RatingInput from './RatingInput';
 import data from '../data.json';
 import { useState } from 'react';
 import PlayAgainModal from './PlayAgainModal.jsx';
 
+function sampleIndices(length, n) {
+    let samples = new Set();
+    while (samples.size < n) {
+        let sample = Math.floor(Math.random() * length);
+        samples.add(sample);
+    }
+    return Array.from(samples);
+}
+
 const Game = ({selectedGame}) => {
+    {/* guessing game */}
     const [isCorrect, setIsCorrect] = useState(false);
     const [randIndex, setRandIndex] = useState(Math.floor(Math.random() * data.length));
     const [feedback, setFeedback] = useState("");
     const [guessCounter, setGuessCounter] = useState(0);
+
+    {/* matching game */}
+    const [randIndices, setRandIndices] = useState(sampleIndices(data.length, 4));
+    const [correctIndex, setCorrectIndex] = useState(Math.floor(Math.random() * randIndices.length));
+    let animeChoices = [];
+    for (let i = 0; i < randIndices.length; i = i + 1) {
+        animeChoices[i] = {name: data[randIndices[i]].name, image: data[randIndices[i]].image};
+    }
 
     const animeToGuess = data[randIndex];
     const ratingToGuess = parseFloat(animeToGuess.score).toFixed(1);
@@ -16,10 +34,17 @@ const Game = ({selectedGame}) => {
         setIsCorrect(false);
         setRandIndex(Math.floor(Math.random() * data.length));
         setGuessCounter(0);
+        
+        setRandIndices(sampleIndices(data.length, 4));
+        setCorrectIndex(Math.floor(Math.random() * randIndices.length));
         return;
     }
+
+    
+
     return (
         <Stack sx={{flex: 7, alignItems: 'center', justifyContent: 'center'}}>
+            {/* guessing game */}
             <Stack sx={{display: (selectedGame[0] == true) ? 'flex' : 'none', alignSelf: 'stretch', alignItems: 'center', '& > *': {margin:1}}}>
                 <Box
                 component="img"
@@ -31,32 +56,35 @@ const Game = ({selectedGame}) => {
                 <Typography>{feedback}</Typography>
                 <PlayAgainModal playAgain={playAgain} isCorrect={isCorrect} guessCounter={guessCounter}/>
             </Stack>
+
+            {/* matching game */}
             <Stack sx={{display: (selectedGame[1] == true) ? 'flex' : 'none', alignSelf: 'stretch', alignItems: 'center'}}>
                 <Stack sx={{flexDirection:'row', justifyContent:'center'}}>
                     <Box
                     component="img"
-                    src={animeToGuess.image}
+                    src={animeChoices[0].image}
                     sx={{objectFit: 'cover', width: {xs: '40%', sm: '200px'}, margin: 2}}
                     />
                     <Box
                     component="img"
-                    src={animeToGuess.image}
+                    src={animeChoices[1].image}
                     sx={{objectFit: 'cover', width: {xs: '40%', sm: '200px'}, margin: 2}}
                     />
                 </Stack>
                 <Stack sx={{flexDirection:'row', justifyContent:'center'}}>
                     <Box
                     component="img"
-                    src={animeToGuess.image}
+                    src={animeChoices[2].image}
                     sx={{objectFit: 'cover', width: {xs: '40%', sm: '200px'}, margin: 2}}
                     />
                     <Box
                     component="img"
-                    src={animeToGuess.image}
+                    src={animeChoices[3].image}
                     sx={{objectFit: 'cover', width: {xs: '40%', sm: '200px'}, margin: 2}}
                     />
                 </Stack>
-                <Typography>{animeToGuess.name}</Typography>
+                <Typography>{animeChoices[correctIndex].name}</Typography>
+                <Button onClick={playAgain}>Test</Button>
             </Stack>
         </Stack>
     );
