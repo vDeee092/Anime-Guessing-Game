@@ -46,7 +46,14 @@ const RatingInput = ({ratingToGuess, onGuess, sendFeedback, guessCounter, setGue
     return (
         <Stack direction="row" alignItems="flex-start">
           <RatingTextField value={rating} onChange={setRating}/>
-          <Button onClick={handleClick}>Enter</Button>
+          <Button sx={{
+            height: 55, 
+            marginX:1, 
+            border: "1px solid rgba(255, 255, 255, 0.23)", 
+            '&:hover': {border: "1px solid white"}
+            }} onClick={handleClick}>
+                Enter
+            </Button>
         </Stack>
     );
 }

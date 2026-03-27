@@ -5,7 +5,7 @@ const theme = createTheme({
   palette: {
     mode: "dark",
     primary: {
-      main: '#f5f5f5'
+      main: '#dddddd'
     },
     secondary: {
       main: '#aaaaaa'
@@ -19,7 +19,8 @@ const theme = createTheme({
     },
     MuiTypography: {
       defaultProps: {
-        align: 'center'
+        align: 'center',
+        color: '#dddddd'
       }
     }
   }
