@@ -1,4 +1,4 @@
-import { Stack, createTheme, ThemeProvider, CssBaseline, Typography, Button} from '@mui/material';
+import { Stack, createTheme, ThemeProvider, CssBaseline, Typography} from '@mui/material';
 import Game from './components/Game';
 import Navbar from './components/Navbar';
 import { useState } from 'react';
@@ -44,11 +44,12 @@ function App() {
         <Stack sx={{flexDirection:{xs: 'column', sm: 'row'}, flex:1, paddingBottom:1}}>
           {/* nav bar */}
           <Navbar selectedGame={selectedGame} setSelectedGame={setSelectedGame}/>
-          <Button onClick={() => console.log(selectedGame)}>test</Button>
           {/* game */}
-          <Game />
+          <Game selectedGame={selectedGame}/>
 		      <Stack sx={{flex: 1.5}}/>
         </Stack>
+
+        {/* footer */}
         <Stack sx={{display:{xs:'none', sm:'block'}, alignItems:"center", borderTop:'1px solid #4d4d4d', padding:1, bottom:0, left: 0, right: 0}}>
           <Typography color="secondary" sx={{fontSize:11}}>Footer</Typography>
         </Stack>
