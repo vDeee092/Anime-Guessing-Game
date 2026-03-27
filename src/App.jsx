@@ -48,6 +48,9 @@ function App() {
           <Game />
 		      <Stack sx={{flex: 1.5}}/>
         </Stack>
+        <Stack sx={{display:{xs:'none', sm:'block'}, alignItems:"center", borderTop:'1px solid #4d4d4d', padding:1, bottom:0, left: 0, right: 0}}>
+          <Typography color="secondary" sx={{fontSize:11}}>Footer</Typography>
+        </Stack>
       </Stack>
     </ThemeProvider>
   )
