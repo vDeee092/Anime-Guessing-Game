@@ -1,11 +1,21 @@
 import {Stack, Modal, Typography, Button} from '@mui/material';
 
+const styles = {
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    width: 400,
+    height: 500,
+    bgcolor: "background.paper"
+}
+
 const PlayAgainModal = ({playAgain, isCorrect, guessCounter}) => {
     console.log(isCorrect)
     return (
         <Modal
         open={isCorrect}>
-            <Stack>
+            <Stack sx={styles}>
                 <Typography>
                     Congratulations
                 </Typography>
