@@ -15,7 +15,7 @@ const RatingInput = ({ratingToGuess, onGuess, sendFeedback, guessCounter, setGue
     const prevRating = usePrev(rating);
 
     const handleClick = () => {
-        let correctAnswer = false;
+        let isCorrect = false;
         if (rating == "") {
             feedback = "Enter a value";
             sendFeedback(feedback);
@@ -30,7 +30,7 @@ const RatingInput = ({ratingToGuess, onGuess, sendFeedback, guessCounter, setGue
             feedback = "Higher";
         else {
             feedback = "";
-            correctAnswer = true;
+            isCorrect = true;
         }
         if (rating == prevRating) {
             feedback = feedback + " - Enter a different value";
@@ -38,7 +38,7 @@ const RatingInput = ({ratingToGuess, onGuess, sendFeedback, guessCounter, setGue
             return;
         }
 
-        onGuess(correctAnswer);
+        onGuess(isCorrect);
         sendFeedback(feedback);
         setGuessCounter(guessCounter + 1);
     }
