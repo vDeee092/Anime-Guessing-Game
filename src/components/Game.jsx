@@ -65,12 +65,18 @@ const Game = ({selectedGame}) => {
             </Stack>
 
             {/* matching game - isCorrect is true when player guesses wrong to show modal */}
-            <Stack sx={{display: (selectedGame[1] == true) ? 'flex' : 'none', alignSelf: 'stretch', alignItems: 'center'}}>
+            <Stack sx={{display: (selectedGame[1] == true) ? 'block' : 'none', alignSelf: 'stretch', alignItems: 'center', height:'100%'}}>
                 <Stack sx={{flexDirection:'row', justifyContent:'center'}}>
                     <Box
                     component="img"
                     src={animeChoices[0].image}
-                    sx={{objectFit: 'cover', width: {xs: '40%', sm: '200px'}, margin: 2}}
+                    sx={{
+                        objectFit: 'cover', 
+                        width: {xs: '40%', sm: '200px'}, 
+                        margin: 2, 
+                        '&:hover': {outline: '4px #121212', transform: 'scale(0.9)', outline: '2px solid white'},
+                        outline: '3px solid rgba(255, 255, 255, 0.23)'
+                    }}
                     onClick={() => {
                         if (0 != correctIndex) 
                             setIsCorrect(true);
@@ -84,7 +90,13 @@ const Game = ({selectedGame}) => {
                     <Box
                     component="img"
                     src={animeChoices[1].image}
-                    sx={{objectFit: 'cover', width: {xs: '40%', sm: '200px'}, margin: 2}}
+                    sx={{
+                        objectFit: 'cover', 
+                        width: {xs: '40%', sm: '200px'}, 
+                        margin: 2, 
+                        '&:hover': {outline: '4px #121212', transform: 'scale(0.9)', outline: '2px solid white'},
+                        outline: '3px solid rgba(255, 255, 255, 0.23)'
+                    }}
                     onClick={() => {
                         if (1 != correctIndex) 
                             setIsCorrect(true);
@@ -100,7 +112,13 @@ const Game = ({selectedGame}) => {
                     <Box
                     component="img"
                     src={animeChoices[2].image}
-                    sx={{objectFit: 'cover', width: {xs: '40%', sm: '200px'}, margin: 2}}
+                    sx={{
+                        objectFit: 'cover', 
+                        width: {xs: '40%', sm: '200px'}, 
+                        margin: 2, 
+                        '&:hover': {outline: '4px #121212', transform: 'scale(0.9)', outline: '2px solid white'},
+                        outline: '3px solid rgba(255, 255, 255, 0.23)'
+                    }}
                     onClick={() => {
                         if (2 != correctIndex) 
                             setIsCorrect(true);
@@ -114,7 +132,13 @@ const Game = ({selectedGame}) => {
                     <Box
                     component="img"
                     src={animeChoices[3].image}
-                    sx={{objectFit: 'cover', width: {xs: '40%', sm: '200px'}, margin: 2}}
+                    sx={{
+                        objectFit: 'cover', 
+                        width: {xs: '40%', sm: '200px'}, 
+                        margin: 2, 
+                        '&:hover': {outline: '4px #121212', transform: 'scale(0.9)', outline: '2px solid white'},
+                        outline: '3px solid rgba(255, 255, 255, 0.23)'
+                    }}
                     onClick={() => {
                         if (3 != correctIndex) 
                             setIsCorrect(true);
