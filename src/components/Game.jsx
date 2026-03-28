@@ -30,13 +30,17 @@ const Game = ({selectedGame}) => {
 
     const animeToGuess = data[randIndex];
     const ratingToGuess = parseFloat(animeToGuess.score).toFixed(1);
-    const playAgain = () => {
-        setIsCorrect(false);
-        setRandIndex(Math.floor(Math.random() * data.length));
-        setGuessCounter(0);
-        
-        setRandIndices(sampleIndices(data.length, 4));
-        setCorrectIndex(Math.floor(Math.random() * randIndices.length));
+    const playAgain = (n) => {
+        switch (n) {
+            case 1:
+                setRandIndices(sampleIndices(data.length, 4));
+                setCorrectIndex(Math.floor(Math.random() * randIndices.length));
+                break;
+            default:
+                setIsCorrect(false);
+                setRandIndex(Math.floor(Math.random() * data.length));
+                setGuessCounter(0);
+        }
         return;
     }
 
@@ -84,7 +88,7 @@ const Game = ({selectedGame}) => {
                     />
                 </Stack>
                 <Typography>{animeChoices[correctIndex].name}</Typography>
-                <Button onClick={playAgain}>Test</Button>
+                <Button onClick={() => playAgain(1)}>Test</Button>
             </Stack>
         </Stack>
     );
