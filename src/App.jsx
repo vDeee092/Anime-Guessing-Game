@@ -51,7 +51,8 @@ function App() {
 
         {/* footer */}
         <Stack sx={{display:{xs:'none', sm:'block'}, alignItems:"center", borderTop:'1px solid #4d4d4d', padding:1, bottom:0, left: 0, right: 0}}>
-          <Typography color="secondary" sx={{fontSize:11}}>This game is a small project made for fun. All data and images are sourced from MyAnimeList. This project is not affiliated with, sponsored, or endorsed by MyAnimeList.</Typography>
+          <Typography color="secondary" sx={{fontSize:11, display: {xs: 'none', md: 'block'}}}>This game is a small project made for fun. All data and images are sourced from MyAnimeList. This project is not affiliated with, sponsored, or endorsed by MyAnimeList.</Typography>
+          <Typography color="secondary" sx={{fontSize:11, display: {xs: 'block', md: 'none'}}}>This game is a small project made for fun. All data and images are sourced from MyAnimeList...</Typography>
         </Stack>
       </Stack>
     </ThemeProvider>
