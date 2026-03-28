@@ -23,6 +23,7 @@ const Game = ({selectedGame}) => {
     {/* matching game */}
     const [randIndices, setRandIndices] = useState(sampleIndices(data.length, 4));
     const [correctIndex, setCorrectIndex] = useState(Math.floor(Math.random() * randIndices.length));
+    const [matchCounter, setMatchCounter] = useState(0);
     let animeChoices = [];
     for (let i = 0; i < randIndices.length; i = i + 1) {
         animeChoices[i] = {name: data[randIndices[i]].name, image: data[randIndices[i]].image};
@@ -36,6 +37,7 @@ const Game = ({selectedGame}) => {
                 setRandIndices(sampleIndices(data.length, 4));
                 setCorrectIndex(Math.floor(Math.random() * randIndices.length));
                 setIsCorrect(false);
+                setMatchCounter(0);
                 break;
             default:
                 setIsCorrect(false);
@@ -59,23 +61,39 @@ const Game = ({selectedGame}) => {
                 <Typography>{animeToGuess.name}</Typography>
                 <RatingInput key={randIndex} ratingToGuess={ratingToGuess} onGuess={setIsCorrect} sendFeedback={setFeedback} guessCounter={guessCounter} setGuessCounter={setGuessCounter}/>
                 <Typography>{feedback}</Typography>
-                <PlayAgainModal selectedGame={0} playAgain={playAgain} isCorrect={isCorrect && selectedGame[0]} guessCounter={guessCounter}/>
+                <PlayAgainModal selectedGame={0} playAgain={playAgain} isCorrect={isCorrect && selectedGame[0]} guessCounter={guessCounter} matchCounter={matchCounter}/>
             </Stack>
 
-            {/* matching game */}
+            {/* matching game - isCorrect is true when player guesses wrong to show modal */}
             <Stack sx={{display: (selectedGame[1] == true) ? 'flex' : 'none', alignSelf: 'stretch', alignItems: 'center'}}>
                 <Stack sx={{flexDirection:'row', justifyContent:'center'}}>
                     <Box
                     component="img"
                     src={animeChoices[0].image}
                     sx={{objectFit: 'cover', width: {xs: '40%', sm: '200px'}, margin: 2}}
-                    onClick={() => {if (0 == correctIndex) setIsCorrect(true)}}
+                    onClick={() => {
+                        if (0 != correctIndex) 
+                            setIsCorrect(true);
+                        else {
+                            setMatchCounter(matchCounter + 1);
+                            setRandIndices(sampleIndices(data.length, 4));
+                            setCorrectIndex(Math.floor(Math.random() * randIndices.length));
+                        };
+                    }}
                     />
                     <Box
                     component="img"
                     src={animeChoices[1].image}
                     sx={{objectFit: 'cover', width: {xs: '40%', sm: '200px'}, margin: 2}}
-                    onClick={() => {if (1 == correctIndex) setIsCorrect(true)}}
+                    onClick={() => {
+                        if (1 != correctIndex) 
+                            setIsCorrect(true);
+                        else {
+                            setMatchCounter(matchCounter + 1);
+                            setRandIndices(sampleIndices(data.length, 4));
+                            setCorrectIndex(Math.floor(Math.random() * randIndices.length));
+                        };
+                    }}
                     />
                 </Stack>
                 <Stack sx={{flexDirection:'row', justifyContent:'center'}}>
@@ -83,17 +101,33 @@ const Game = ({selectedGame}) => {
                     component="img"
                     src={animeChoices[2].image}
                     sx={{objectFit: 'cover', width: {xs: '40%', sm: '200px'}, margin: 2}}
-                    onClick={() => {if (2 == correctIndex) setIsCorrect(true)}}
+                    onClick={() => {
+                        if (2 != correctIndex) 
+                            setIsCorrect(true);
+                        else {
+                            setMatchCounter(matchCounter + 1);
+                            setRandIndices(sampleIndices(data.length, 4));
+                            setCorrectIndex(Math.floor(Math.random() * randIndices.length));
+                        };
+                    }}
                     />
                     <Box
                     component="img"
                     src={animeChoices[3].image}
                     sx={{objectFit: 'cover', width: {xs: '40%', sm: '200px'}, margin: 2}}
-                    onClick={() => {if (3 == correctIndex) setIsCorrect(true)}}
+                    onClick={() => {
+                        if (3 != correctIndex) 
+                            setIsCorrect(true);
+                        else {
+                            setMatchCounter(matchCounter + 1);
+                            setRandIndices(sampleIndices(data.length, 4));
+                            setCorrectIndex(Math.floor(Math.random() * randIndices.length));
+                        };
+                    }}
                     />
                 </Stack>
                 <Typography>{animeChoices[correctIndex].name}</Typography>
-                <PlayAgainModal selectedGame={1} playAgain={playAgain} isCorrect={isCorrect && selectedGame[1]} guessCounter={guessCounter}/>
+                <PlayAgainModal selectedGame={1} playAgain={playAgain} isCorrect={isCorrect && selectedGame[1]} guessCounter={guessCounter} matchCounter={matchCounter}/>
             </Stack>
         </Stack>
     );

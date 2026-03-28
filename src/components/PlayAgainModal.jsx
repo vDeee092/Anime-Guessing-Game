@@ -10,7 +10,7 @@ const styles = {
     bgcolor: "background.paper"
 }
 
-const PlayAgainModal = ({selectedGame, playAgain, isCorrect, guessCounter}) => {
+const PlayAgainModal = ({selectedGame, playAgain, isCorrect, guessCounter, matchCounter}) => {
     return (
         <Modal
         open={isCorrect}>
@@ -20,7 +20,12 @@ const PlayAgainModal = ({selectedGame, playAgain, isCorrect, guessCounter}) => {
                     <Typography>You guessed the rating in {guessCounter} tries!</Typography>
                 </Stack>}
                 {selectedGame == 1 && <Stack>
-                    <Typography>Correct!</Typography>
+                    <Typography>Wrong!</Typography>
+                    {matchCounter == 0 && <Stack>
+                        <Typography>You're bad kid!</Typography>
+                        <Typography>How are you losing without matching a single Anime right?</Typography>
+                    </Stack>}
+                    {matchCounter >= 1 && <Typography>You correctly matched the Anime {matchCounter} {matchCounter == 1 ? 'time (noob)' : 'times in a row!'}</Typography>}
                 </Stack>}
                 <Button onClick={() => playAgain(selectedGame)}>
                     Play Again
