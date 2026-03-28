@@ -10,18 +10,19 @@ const styles = {
     bgcolor: "background.paper"
 }
 
-const PlayAgainModal = ({playAgain, isCorrect, guessCounter}) => {
+const PlayAgainModal = ({selectedGame, playAgain, isCorrect, guessCounter}) => {
     return (
         <Modal
         open={isCorrect}>
             <Stack sx={styles}>
-                <Typography>
-                    Congratulations
-                </Typography>
-                <Typography>
-                    You guessed the rating in {guessCounter} tries!
-                </Typography>
-                <Button onClick={playAgain}>
+                {selectedGame == 0 && <Stack>
+                    <Typography>Congratulations</Typography>
+                    <Typography>You guessed the rating in {guessCounter} tries!</Typography>
+                </Stack>}
+                {selectedGame == 1 && <Stack>
+                    <Typography>Correct!</Typography>
+                </Stack>}
+                <Button onClick={() => playAgain(selectedGame)}>
                     Play Again
                 </Button>
             </Stack>
