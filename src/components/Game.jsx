@@ -65,7 +65,7 @@ const Game = ({selectedGame}) => {
             </Stack>
 
             {/* matching game - isCorrect is true when player guesses wrong to show modal */}
-            <Stack sx={{display: (selectedGame[1] == true) ? 'block' : 'none', alignSelf: 'stretch', alignItems: 'center', height:'100%'}}>
+            <Stack sx={{display: (selectedGame[1] == true) ? 'flex' : 'none', alignSelf: 'stretch', alignItems: 'center', height:'100%', justifyContent: 'center'}}>
                 <Stack sx={{flexDirection:'row', justifyContent:'center'}}>
                     <Box
                     component="img"
